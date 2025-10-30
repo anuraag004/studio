@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { Film } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { Button } from './ui/button';
 import { ModeToggle } from './ModeToggle';
+import { UserProfileSwitcher } from './UserProfileSwitcher';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -37,8 +37,9 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <div className="flex flex-1 items-center justify-end">
+        <div className="flex flex-1 items-center justify-end space-x-2">
           <ModeToggle />
+          <UserProfileSwitcher />
         </div>
       </div>
     </header>

@@ -5,6 +5,7 @@ import { Footer } from '@/components/Footer';
 import { WatchlistProvider } from '@/context/WatchlistContext';
 import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { UserProvider } from '@/context/UserContext';
 
 export const metadata: Metadata = {
   title: 'CineScope',
@@ -30,14 +31,16 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
         >
-          <WatchlistProvider>
-            <div className="flex flex-col min-h-screen">
-              <Header />
-              <main className="flex-grow">{children}</main>
-              <Footer />
-            </div>
-            <Toaster />
-          </WatchlistProvider>
+          <UserProvider>
+            <WatchlistProvider>
+              <div className="flex flex-col min-h-screen">
+                <Header />
+                <main className="flex-grow">{children}</main>
+                <Footer />
+              </div>
+              <Toaster />
+            </WatchlistProvider>
+          </UserProvider>
         </ThemeProvider>
       </body>
     </html>

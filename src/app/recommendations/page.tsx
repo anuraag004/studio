@@ -9,10 +9,10 @@ import type { Movie } from '@/lib/types';
 import { MovieCard } from '@/components/MovieCard';
 import { Loader2, Sparkles } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-
-const viewingHistory = ['Cosmic Odyssey', 'Blade Runner 2049'];
+import { useUser } from '@/context/UserContext';
 
 export default function RecommendationsPage() {
+  const { currentUser } = useUser();
   const { watchlist } = useWatchlist();
   const [recommendations, setRecommendations] = useState<Movie[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -21,7 +21,10 @@ export default function RecommendationsPage() {
   const handleGetRecommendations = () => {
     startTransition(async () => {
       setError(null);
+      if (!currentUser) return;
+
       try {
+        const viewingHistory = currentUser.viewingHistory || [];
         const savedMovieTitles = watchlist.map(movie => movie.title);
         const input = {
           viewingHistory: viewingHistory,
@@ -50,9 +53,9 @@ export default function RecommendationsPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
           <div>
             <h3 className="font-medium">Recently Watched</h3>
-            {viewingHistory.length > 0 ? (
+            {currentUser?.viewingHistory && currentUser.viewingHistory.length > 0 ? (
               <ul className="list-disc list-inside text-muted-foreground mt-2">
-                {viewingHistory.map(title => <li key={title}>{title}</li>)}
+                {currentUser.viewingHistory.map(title => <li key={title}>{title}</li>)}
               </ul>
             ) : <p className="text-sm text-muted-foreground mt-2">No viewing history yet.</p>}
           </div>
@@ -66,7 +69,7 @@ export default function RecommendationsPage() {
           </div>
         </div>
         <div className="mt-6 text-center">
-            <Button onClick={handleGetRecommendations} disabled={isPending} size="lg">
+            <Button onClick={handleGetRecommendations} disabled={isPending || !currentUser} size="lg">
               {isPending ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
