@@ -6,6 +6,7 @@ import { WatchlistProvider } from '@/context/WatchlistContext';
 import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { UserProvider } from '@/context/UserContext';
+import { ProfileSelectionModal } from '@/components/ProfileSelectionModal';
 
 export const metadata: Metadata = {
   title: 'CineScope',
@@ -39,6 +40,7 @@ export default function RootLayout({
                 <Footer />
               </div>
               <Toaster />
+              <ProfileSelectionModal />
             </WatchlistProvider>
           </UserProvider>
         </ThemeProvider>
