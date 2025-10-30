@@ -1,3 +1,64 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "m1",
+      "imageUrl": "https://images.unsplash.com/photo-1614729939124-032f0b56c9ce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzcGFjZSUyMGV4cGxvcmF0aW9ufGVufDB8fHx8MTc2MTc3MjAxOXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "space exploration"
+    },
+    {
+      "id": "m2",
+      "imageUrl": "https://images.unsplash.com/photo-1553675559-5046b59a5ca5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxmdXR1cmlzdGljJTIwY2l0eXxlbnwwfHx8fDE3NjE4NTc1MjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "futuristic city"
+    },
+    {
+      "id": "m3",
+      "imageUrl": "https://images.unsplash.com/photo-1583410525653-e56f502b7906?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxqdW5nbGUlMjBhZHZlbnR1cmV8ZW58MHx8fHwxNzYxODM4OTIxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "jungle adventure"
+    },
+    {
+      "id": "m4",
+      "imageUrl": "https://images.unsplash.com/photo-1544127860-1093795d30de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxkZXRlY3RpdmUlMjBub2lyfGVufDB8fHx8MTc2MTgxODM1M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "detective noir"
+    },
+    {
+      "id": "m5",
+      "imageUrl": "https://images.unsplash.com/photo-1729685422679-0ec21b8e4204?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxmYW50YXN5JTIwY2FzdGxlfGVufDB8fHx8MTc2MTgzMjI2MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "fantasy castle"
+    },
+    {
+      "id": "m6",
+      "imageUrl": "https://images.unsplash.com/photo-1637308106210-e42d5b322c9c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx1bmRlcndhdGVyJTIwd29ybGR8ZW58MHx8fHwxNzYxNzUzNjQyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "underwater world"
+    },
+    {
+      "id": "m7",
+      "imageUrl": "https://images.unsplash.com/photo-1635857770882-3110be80bff9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjb3dib3klMjB3ZXN0ZXJufGVufDB8fHx8MTc2MTg1NjI3OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cowboy western"
+    },
+    {
+      "id": "m8",
+      "imageUrl": "https://picsum.photos/seed/m8/400/600",
+      "imageHint": "romantic comedy"
+    },
+    {
+      "id": "m9",
+      "imageUrl": "https://images.unsplash.com/photo-1760204978375-3a661ba765c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxoaXN0b3JpY2FsJTIwZHJhbWF8ZW58MHx8fHwxNzYxODA1MjQ2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "historical drama"
+    },
+    {
+      "id": "m10",
+      "imageUrl": "https://images.unsplash.com/photo-1626278664285-f796b9ee7806?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzdXBlcmhlcm8lMjBiYXR0bGV8ZW58MHx8fHwxNzYxODUzNzk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "superhero battle"
+    },
+    {
+      "id": "m11",
+      "imageUrl": "https://images.unsplash.com/photo-1659059530318-656a112ad2cd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx6b21iaWUlMjBhcG9jYWx5cHNlfGVufDB8fHx8MTc2MTg1MDgyMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "zombie apocalypse"
+    },
+    {
+      "id": "m12",
+      "imageUrl": "https://images.unsplash.com/photo-1509062522246-3755977927d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxoaWdoJTIwc2Nob29sfGVufDB8fHx8MTc2MTc4MzE0OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "high school"
+    }
+  ]
 }
