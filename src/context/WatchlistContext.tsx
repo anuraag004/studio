@@ -21,39 +21,64 @@ export const WatchlistProvider = ({ children }: { children: ReactNode }) => {
   const { toast } = useToast()
   const { currentUser } = useUser();
   const [watchlists, setWatchlists] = useState<Watchlist>({});
-  const isInitialMount = useRef(true);
+  
+  // Ref to track the previous state of the watchlist for comparison
+  const prevWatchlistsRef = useRef<Watchlist>();
 
-  // Load from localStorage only on the client-side
+  // Load from localStorage on initial client-side render
   useEffect(() => {
     try {
       const savedWatchlists = localStorage.getItem('watchlists');
-      if (savedWatchlists) {
-        setWatchlists(JSON.parse(savedWatchlists));
-      }
+      const parsedWatchlists = savedWatchlists ? JSON.parse(savedWatchlists) : {};
+      setWatchlists(parsedWatchlists);
+      prevWatchlistsRef.current = parsedWatchlists; // Initialize ref
     } catch (error) {
       console.error("Failed to load watchlists from localStorage", error);
     }
   }, []);
 
-  const currentWatchlist = currentUser ? watchlists[currentUser.id] || [] : [];
-  
-  // Effect for showing toasts
+  // Effect for saving to localStorage and showing toasts
   useEffect(() => {
-      // Don't run on initial mount
-    if (isInitialMount.current) {
-        isInitialMount.current = false;
+    // Don't run if there is no current user
+    if (!currentUser?.id) {
+        prevWatchlistsRef.current = watchlists;
         return;
     }
-    
-    // Save to localStorage
+
     try {
-        localStorage.setItem('watchlists', JSON.stringify(watchlists));
+      localStorage.setItem('watchlists', JSON.stringify(watchlists));
     } catch (error) {
-        console.error("Failed to save watchlist to localStorage", error);
+      console.error("Failed to save watchlist to localStorage", error);
     }
 
-  }, [watchlists]);
+    const prevUserWatchlist = prevWatchlistsRef.current?.[currentUser.id] || [];
+    const currentUserWatchlist = watchlists[currentUser.id] || [];
 
+    // Check if a movie was added
+    if (currentUserWatchlist.length > prevUserWatchlist.length) {
+      const addedMovie = currentUserWatchlist.find(movie => !prevUserWatchlist.some(m => m.id === movie.id));
+      if (addedMovie) {
+        toast({
+          title: "Added to Watchlist",
+          description: `"${addedMovie.title}" has been added.`,
+        });
+      }
+    } 
+    // Check if a movie was removed
+    else if (currentUserWatchlist.length < prevUserWatchlist.length) {
+      const removedMovie = prevUserWatchlist.find(movie => !currentUserWatchlist.some(m => m.id === movie.id));
+      if (removedMovie) {
+        toast({
+          title: "Removed from Watchlist",
+          description: `"${removedMovie.title}" has been removed.`,
+        });
+      }
+    }
+
+    // Update the ref to the current state for the next render
+    prevWatchlistsRef.current = watchlists;
+
+  }, [watchlists, currentUser, toast]);
 
   const addToWatchlist = (movie: Movie) => {
     if (!currentUser) {
@@ -68,12 +93,8 @@ export const WatchlistProvider = ({ children }: { children: ReactNode }) => {
     setWatchlists(prev => {
       const userWatchlist = prev[currentUser.id] || [];
       if (userWatchlist.some(m => m.id === movie.id)) {
-        return prev; // Already in watchlist
+        return prev; // Already in watchlist, don't change state
       }
-      toast({
-        title: "Added to Watchlist",
-        description: `"${movie.title}" has been added.`,
-      })
       return {
         ...prev,
         [currentUser.id]: [...userWatchlist, movie]
@@ -86,12 +107,8 @@ export const WatchlistProvider = ({ children }: { children: ReactNode }) => {
 
     setWatchlists(prev => {
       const userWatchlist = prev[currentUser.id] || [];
-      const movieToRemove = userWatchlist.find(movie => movie.id === movieId);
-      if (movieToRemove) {
-        toast({
-            title: "Removed from Watchlist",
-            description: `"${movieToRemove.title}" has been removed.`,
-        })
+      if (!userWatchlist.some(movie => movie.id === movieId)) {
+        return prev; // Not in watchlist, don't change state
       }
       return {
         ...prev,
@@ -105,6 +122,8 @@ export const WatchlistProvider = ({ children }: { children: ReactNode }) => {
     const userWatchlist = watchlists[currentUser.id] || [];
     return userWatchlist.some(movie => movie.id === movieId);
   };
+  
+  const currentWatchlist = currentUser ? watchlists[currentUser.id] || [] : [];
 
   return (
     <WatchlistContext.Provider value={{ watchlist: currentWatchlist, addToWatchlist, removeFromWatchlist, isInWatchlist }}>
