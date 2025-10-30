@@ -5,18 +5,13 @@ import { getMovies, movies } from '@/lib/data';
 import { SearchBar } from '@/components/SearchBar';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
-export default function Home({
-  searchParams,
-}: {
-  searchParams?: {
-    query?: string;
-    genre?: string;
-  };
-}) {
-  const query = searchParams?.query || '';
-  const genre = searchParams?.genre || '';
-  
+export default function Home() {
+  const searchParams = useSearchParams();
+  const query = searchParams.get('query') || '';
+  const genre = searchParams.get('genre') || '';
+
   const allGenres = Array.from(new Set(movies.flatMap(m => m.genre)));
 
   const filteredMovies = getMovies(query, genre);
@@ -38,13 +33,13 @@ export default function Home({
       <section className="mb-12">
         <h2 className="text-2xl font-headline font-semibold mb-4 text-center">Browse by Genre</h2>
         <div className="flex flex-wrap gap-2 justify-center">
-          <Link href={{ pathname: '/', query: { ...searchParams, genre: undefined } }}>
+          <Link href={{ pathname: '/', query: { query } }}>
             <Badge variant={!genre ? 'default' : 'secondary'} className="text-sm cursor-pointer">
               All
             </Badge>
           </Link>
           {allGenres.map(g => (
-            <Link key={g} href={{ pathname: '/', query: { ...searchParams, genre: g } }}>
+            <Link key={g} href={{ pathname: '/', query: { query, genre: g } }}>
                <Badge variant={genre === g ? 'default' : 'secondary'} className="text-sm cursor-pointer">
                 {g}
               </Badge>
