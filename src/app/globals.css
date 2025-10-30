@@ -65,5 +65,10 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-image: radial-gradient(
+      circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+      hsla(var(--primary) / 0.1),
+      hsla(var(--background) / 1) 40%
+    );
   }
 }

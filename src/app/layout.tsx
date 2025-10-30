@@ -7,6 +7,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { UserProvider } from '@/context/UserContext';
 import { ProfileSelectionModal } from '@/components/ProfileSelectionModal';
+import { Spotlight } from '@/components/Spotlight';
 
 export const metadata: Metadata = {
   title: 'CineScope',
@@ -35,6 +36,7 @@ export default function RootLayout({
           <UserProvider>
             <WatchlistProvider>
               <div className="flex flex-col min-h-screen">
+                <Spotlight />
                 <Header />
                 <main className="flex-grow">{children}</main>
                 <Footer />
