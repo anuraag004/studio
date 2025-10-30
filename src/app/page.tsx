@@ -22,9 +22,6 @@ export default function Home() {
         <h1 className="text-4xl md:text-5xl font-headline font-bold mb-4 tracking-tight">
           Explore the Cinematic Universe
         </h1>
-        <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-          Discover your next favorite film. Search for movies, actors, genres, and get personalized recommendations.
-        </p>
         <div className="mt-8 max-w-lg mx-auto">
           <SearchBar />
         </div>
